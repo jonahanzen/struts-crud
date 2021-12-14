@@ -12,33 +12,29 @@ import br.com.model.entity.Estudante;
 @Stateless
 @Transactional
 public class EstudanteRepository {
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public void novoEstudante(Estudante estudante) {
 		em.persist(estudante);
 	}
-	
+
 	public List<Estudante> todosEstudantes() {
 		return em.createQuery("select e from Estudante e order by e.id", Estudante.class).getResultList();
 	}
-	
+
 	public Estudante consultarEstudante(int id) {
 		return em.find(Estudante.class, id);
 	}
-	
+
 	public void alterarEstudante(Estudante novoEstudante) {
-//		Estudante estudante =
-				em.merge(novoEstudante);
-//		em.persist(estudante);
+		em.merge(novoEstudante);
 	}
-	
+
 	public void deletarEstudante(int id) {
-	Estudante estudante = consultarEstudante(id);
-	em.remove(estudante);
+		Estudante estudante = consultarEstudante(id);
+		em.remove(estudante);
 	}
-	
-	
 
 }

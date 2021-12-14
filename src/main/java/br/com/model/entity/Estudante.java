@@ -28,8 +28,6 @@ public class Estudante {
 	public Integer getId() {
 		return id;
 	}
-	
-	
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -55,7 +53,5 @@ public class Estudante {
 	public String toString() {
 		return "Estudante [id=" + id + ", nome=" + nome + ", email=" + email + "]";
 	}
-	
-	
 
 }

@@ -35,9 +35,9 @@ public class EstudanteAction extends ActionSupport {
 		return "novoestudante";
 	}
 
-	@Action(value = "salvarEstudante", results = { @Result(name = "consultar", location = "listaestudantes", type = "redirect") })
+	@Action(value = "salvarEstudante", results = {
+			@Result(name = "consultar", location = "listaestudantes", type = "redirect") })
 	public String salvarEstudante() {
-		System.out.println(estudante.toString());
 		if (estudante.getId() != null) {
 			service.alterarEstudante(estudante);
 		} else {
@@ -48,20 +48,16 @@ public class EstudanteAction extends ActionSupport {
 
 	@Action(value = "editarEstudante", results = { @Result(name = "editarEstudante", location = "novoestudante.jsp") })
 	public String editarEstudante() {
-		System.out.println(estudante.toString());
 		estudante = service.consultarEstudante(estudante.getId());
-		System.out.println(estudante.toString());
 		return "editarEstudante";
 	}
-	
+
 	@Action(value = "removerEstudante", results = {
-			@Result(name = "success", location = "listaestudantes", type = "redirect")})
-			public String removerEstudante() {
-				service.deletarEstudante(estudante.getId());
-				return "success";
-			}
-	
-	
+			@Result(name = "success", location = "listaestudantes", type = "redirect") })
+	public String removerEstudante() {
+		service.deletarEstudante(estudante.getId());
+		return "success";
+	}
 
 	public List<Estudante> getEstudantes() {
 		return estudantes;
