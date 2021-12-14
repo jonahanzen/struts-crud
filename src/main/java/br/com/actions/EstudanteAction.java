@@ -16,6 +16,12 @@ import br.com.model.service.EstudanteService;
 @Stateless
 public class EstudanteAction extends ActionSupport {
 
+	/*
+	 * List de estudantes bem como Estudante para poder mandar e receber dados da/s pagina/s
+	 * Ao carregar a pagina o framework faz um Get em X propriedade, ao enviar o form, o struts faz um Set em X propriedade
+	 * e.g  estudante.nome == EstudanteAction.estudante.getnome()
+	 * e.g  estudante.email == EstudanteAction.estudante.setEmail()
+	 */
 	private List<Estudante> estudantes;
 
 	private Estudante estudante;
@@ -23,6 +29,11 @@ public class EstudanteAction extends ActionSupport {
 	@Inject
 	private EstudanteService service;
 
+	/*
+	 *Action para deixar o método "remoto/dinamico" podendo ser chamado a partir e uma jsp
+	 *Result a nivel de método para definir "o que fazer" ao final do método 
+	 */
+	
 	@Action(value = "listaestudantes", results = { @Result(name = "consultar", location = "consultar.jsp") })
 	public String todosEstudantes() {
 		this.estudantes = service.todosEstudantes();
